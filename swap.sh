@@ -2,29 +2,38 @@
 
 # =====================================
 # Swap Space Creation Script
-# Student Name:KRISHNAKUMAR.R
-# Roll Number:1U24IT058
+# Student Name:kabilesh c
+# Roll Number:1U24IT048
 # =====================================
 
-# Create a 1 GB swap file
-sudo fallocate -l 1G /swapfile
+# Write your commands below
+#!/bin/bash
 
-# Set correct permissions
+# =====================================
+# Swap Space Creation Script
+# Student Name: DHARAN K
+# Roll Number: 1U24IT029
+# =====================================
+
+# Write your commands below
+
+# Disable existing swap
+sudo swapoff /swapfile
+
+# Remove existing swapfile if present
+sudo rm -f /swapfile
+
+# Create a 1GB swap file using dd
+sudo dd if=/dev/zero of=/swapfile bs=1M count=1024
+
+# Set proper permissions (readable/writable by root only)
 sudo chmod 600 /swapfile
 
-# Format the file as swap space
+# Create swap signature on the file
 sudo mkswap /swapfile
 
-# Enable the swap space
+# Activate the swap space
 sudo swapon /swapfile
 
-# Make swap permanent after reboot
-echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
-
-# Display swap status
+# Display the activated swap space
 sudo swapon --show
-
-# Display memory and swap usage
-free -h
-
-
